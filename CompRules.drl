@@ -1,0 +1,74 @@
+//created on: Feb 17, 2013
+package com.comp
+import com.comp.Comp.Machine;
+ 
+rule "-If a computer has a graphics card and a CPU over 3 GHz, it is loud"
+    when
+        m : Message( graphic_card == true, speed>3 )
+    then
+        m.setLoud( true );
+end
+
+rule "If a computer has over 16 GB of memory, it is loudt"
+    when
+        m : Message( mem>16 )
+    then
+        m.setLoud( true );
+end
+
+rule "If a computer costs less than $1k, it is cheap"
+    when
+        m : Message( cost<1000 )
+    then
+        m.setCheap( true );
+end
+
+rule "If a computer costs more than $4k, it is expensive"
+    when
+        m : Message( cost>4000 )
+    then
+        m.setCheap( false );
+end
+
+rule "If a computer has more than 8GB of memory or a CPU faster than 4GHz,it is hot"
+    when
+        m : Message( memory>8, speed>4 )
+    then
+        m.setHot( true );
+end
+
+rule "If a computer is cheap and hot, it is risky."
+    when
+        m : Message( cheap==true, hot==true )
+    then
+        m.setRisky( true );
+end
+
+rule "If a computer has a premium graphics card, it can game "
+    when
+        m : Message( card=="premium" )
+    then
+        m.setGame( true );
+end
+
+rule "If a computer has a graphics card and a CPU>2GHz, it can game "
+    when
+        m : Message( card!=null, speed>2 )
+    then
+        m.setGame( true );
+end
+
+rule "If a computer has a CPU over 4 GHz and over 4GB memory, it can crunch numbers "
+    when
+        m : Message( speed>4, memory>4 )
+    then
+        m.CrunchNumbers( true );
+end
+
+
+rule "If a computer has a premium graphics card, it can crunch numbers"
+    when
+        Message( card=="premium" )
+    then
+        CrunchNumbers( true );
+end
